@@ -63,7 +63,7 @@ PricePulse aggregates real-time and historical data, applies ML forecasting, mon
 
 graph LR
     %% Data Sources
-    A[Field Officer] -->|Geo-Fenced Input| B(Data Aggregation)
+    A[Field Officer] --> B(Data Aggregation)
     C[Historical Data] --> B
 
     %% AI Core
@@ -78,15 +78,6 @@ graph LR
     
     %% Action
     F --> H[Buffer Stock Logic]
-
-    %% Styling for GitHub Dark/Light Mode
-    style A fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
-    style D fill:#fff9c4,stroke:#fbc02d,stroke-width:2px
-    style E fill:#fff9c4,stroke:#fbc02d,stroke-width:2px
-    style F fill:#ffcdd2,stroke:#c62828,stroke-width:2px
-    style H fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
-
-
 
 ---
 
