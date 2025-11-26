@@ -8,9 +8,8 @@
 
 PricePulse is an AI-driven **Decision Support System (DSS)** built for the Department of Consumer Affairs to move from a reactive to a proactive approach in managing price volatility for essential commodities. The system forecasts price volatility **15 days in advance** for 22 essential commodities (pulses, onions, etc.), and recommends strategic interventions.
 
-**Live Demo:** [Insert Your Netlify/Render Link Here]
 
-**Video Walkthrough:** [Insert YouTube Link Here (Optional)]
+**Video Walkthrough:** https://youtu.be/TfeYUZUoets
 
 ---
 
@@ -53,9 +52,6 @@ PricePulse aggregates real-time and historical data, applies ML forecasting, mon
 
   * Scrapes headlines (e.g., "Truck Strike", "Rains in Nashik") and performs sentiment/scenario analysis to adjust forecasts.
 
-* **Lok Bhasha (Multilingual Support)**
-
-  * One-click translation to 10+ Indian languages (Hindi, Marathi, Tamil, etc.).
 
 ---
 
@@ -125,8 +121,8 @@ PricePulse/
 **1. Clone the repository**
 
 ```bash
-git clone https://github.com/YourUsername/PricePulse-SIH.git
-cd PricePulse-SIH
+git clone https://github.com/YourUsername/PricePulse.git
+cd PricePulse
 ```
 
 **2. Install dependencies**
@@ -156,10 +152,15 @@ Open the dashboard at: `http://127.0.0.1:5000/`
 
 ## 📸 Screenshots
 
-1. Policymaker Dashboard (War Room) — Real-time heatmap and forecasts.
-2. Geo-Verified Field App — GPS-locked data entry form.
+1. Landing Page- <img width="1886" height="877" alt="Screenshot 2025-11-25 183254" src="https://github.com/user-attachments/assets/2cb8e9e5-152e-4cb8-80b6-24a7eaf121c5" />
 
-(Place images under `static/` and reference them in `index.html`.)
+2. India HeatMap- ![WhatsApp Image 2025-11-25 at 19 15 38](https://github.com/user-attachments/assets/712729cb-8753-4e1a-b5d3-d157732feac6)
+3. Dashboard - ![WhatsApp Image 2025-11-25 at 18 24 15 (2)](https://github.com/user-attachments/assets/dae9af96-9be0-45ee-92a9-1e55e0c7856d)
+4. ![WhatsApp Image 2025-11-25 at 18 24 15](https://github.com/user-attachments/assets/bdcf2575-bfe7-484d-88d5-8680257ff884)
+
+
+
+
 
 ---
 
@@ -170,19 +171,19 @@ Open the dashboard at: `http://127.0.0.1:5000/`
 * **Prashant Pawar**
 * **Kavita Kharade**
 
-Built with ❤️ for Smart India Hackathon 2024
+Built with dedication and efforts.
 
 ---
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome. Please fork the repository and create a PR.
+Contributions, issues and feature requests are welcome.
 
 ---
 
 ## 📄 License
 
-This project is open source — add your preferred license (e.g., MIT) here.
+This project is open source- MIT License.
 
 ---
 
@@ -192,5 +193,4 @@ For queries, reach out to: `kavitakharade22@gmail.com` or open an issue on GitHu
 
 ---
 
-*Replace placeholder links, names, and contact details with actual values before publishing.*
 
