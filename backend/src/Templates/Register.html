@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>StreetFood Login/Register</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .message {
+            color: red;
+            font-weight: bold;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>PricePulse</h2>
+    <!-- Register Form -->
+    <div id="register-form" class="form-box">
+        <form id="registerForm">
+            <input type="text" name="name" placeholder="Full Name" required><br>
+            <input type="text" name="username" placeholder="Username" required><br>
+            <input type="email" name="email" placeholder="Email" required><br>
+            <input type="text" name="contact" placeholder="Contact Number" required><br>
+
+            <input type="password" id="reg-password" name="password" placeholder="Password (8 characters)" required><br>
+            <div id="password-error" class="error"></div>
+
+            <input type="password" name="confirm_password" placeholder="Confirm Password" required><br>
+            <button type="submit" name="register">Register</button>
+        </form>
+        <p>Already have an account?</p>
+        <p><a href="login.html">Login</a></p>
+        <div id="message" class="message"></div>
+    </div>
+</div>
+
+<script>
+const form = document.getElementById("registerForm");
+const messageDiv = document.getElementById("message");
+
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const data = {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        password: formData.get("password")
+    };
+
+    try {
+        const response = await fetch("http://127.0.0.1:5000/pricepulse/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (result.status === "success") {
+            messageDiv.style.color = "green";
+            messageDiv.textContent = "Registration successful! You can now login.";
+            form.reset();
+        } else {
+            messageDiv.style.color = "red";
+            messageDiv.textContent = result.message;
+        }
+    } catch (err) {
+        messageDiv.style.color = "red";
+        messageDiv.textContent = "Server error! Please try again.";
+    }
+});
+</script>
+
+</body>
+</html>

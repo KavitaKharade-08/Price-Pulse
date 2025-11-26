@@ -1,0 +1,479 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: 
+        linear-gradient(135deg, rgba(16, 185, 129, 0.85) 0%, rgba(5, 150, 105, 0.85) 100%),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><style>.food-icon{fill:rgba(255,255,255,0.1);}.vendor-icon{fill:rgba(255,255,255,0.08);}.pattern{fill:rgba(255,255,255,0.05);}</style></defs><rect width="100%" height="100%" fill="rgba(16,185,129,0.1)"/><g class="pattern"><circle cx="100" cy="100" r="40"/><circle cx="300" cy="200" r="35"/><circle cx="500" cy="150" r="45"/><circle cx="700" cy="250" r="38"/><circle cx="900" cy="180" r="42"/><circle cx="1100" cy="220" r="36"/></g><g class="food-icon"><path d="M150,300 Q170,280 190,300 Q210,320 190,340 Q170,360 150,340 Q130,320 150,300 Z"/><text x="165" y="325" font-size="20" text-anchor="middle">🍜</text></g><g class="food-icon"><path d="M350,400 Q370,380 390,400 Q410,420 390,440 Q370,460 350,440 Q330,420 350,400 Z"/><text x="365" y="425" font-size="20" text-anchor="middle">🌮</text></g><g class="food-icon"><path d="M550,350 Q570,330 590,350 Q610,370 590,390 Q570,410 550,390 Q530,370 550,350 Z"/><text x="565" y="375" font-size="20" text-anchor="middle">🍕</text></g><g class="food-icon"><path d="M750,450 Q770,430 790,450 Q810,470 790,490 Q770,510 750,490 Q730,470 750,450 Z"/><text x="765" y="475" font-size="20" text-anchor="middle">🥙</text></g><g class="food-icon"><path d="M950,380 Q970,360 990,380 Q1010,400 990,420 Q970,440 950,420 Q930,400 950,380 Z"/><text x="965" y="405" font-size="20" text-anchor="middle">🍔</text></g><g class="vendor-icon"><rect x="80" y="500" width="60" height="40" rx="5" fill="rgba(255,255,255,0.1)"/><text x="110" y="525" font-size="16" text-anchor="middle">🏪</text></g><g class="vendor-icon"><rect x="280" y="550" width="60" height="40" rx="5" fill="rgba(255,255,255,0.1)"/><text x="310" y="575" font-size="16" text-anchor="middle">🚚</text></g><g class="vendor-icon"><rect x="480" y="520" width="60" height="40" rx="5" fill="rgba(255,255,255,0.1)"/><text x="510" y="545" font-size="16" text-anchor="middle">📦</text></g><g class="vendor-icon"><rect x="680" y="580" width="60" height="40" rx="5" fill="rgba(255,255,255,0.1)"/><text x="710" y="605" font-size="16" text-anchor="middle">🛒</text></g><g class="vendor-icon"><rect x="880" y="540" width="60" height="40" rx="5" fill="rgba(255,255,255,0.1)"/><text x="910" y="565" font-size="16" text-anchor="middle">🤝</text></g><path d="M50,600 Q200,580 350,600 T650,600 T950,600 T1150,600" stroke="rgba(255,255,255,0.2)" stroke-width="2" fill="none"/><path d="M100,650 Q250,630 400,650 T700,650 T1000,650" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" fill="none"/></svg>');
+    background-size: cover, 1200px 800px;
+    background-position: center, center;
+    background-attachment: fixed, scroll;
+    background-repeat: no-repeat, repeat;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: backgroundShift 20s ease-in-out infinite alternate;
+}
+
+@keyframes backgroundShift {
+    0% { 
+        background: 
+            linear-gradient(135deg, rgba(16, 185, 129, 0.85) 0%, rgba(5, 150, 105, 0.85) 100%),
+            url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><style>.food-icon{fill:rgba(255,255,255,0.1);}.vendor-icon{fill:rgba(255,255,255,0.08);}.pattern{fill:rgba(255,255,255,0.05);}</style></defs><rect width="100%" height="100%" fill="rgba(16,185,129,0.1)"/><g class="pattern"><circle cx="100" cy="100" r="40"/><circle cx="300" cy="200" r="35"/><circle cx="500" cy="150" r="45"/><circle cx="700" cy="250" r="38"/><circle cx="900" cy="180" r="42"/><circle cx="1100" cy="220" r="36"/></g><g class="food-icon"><path d="M150,300 Q170,280 190,300 Q210,320 190,340 Q170,360 150,340 Q130,320 150,300 Z"/><text x="165" y="325" font-size="20" text-anchor="middle">🍜</text></g><g class="food-icon"><path d="M350,400 Q370,380 390,400 Q410,420 390,440 Q370,460 350,440 Q330,420 350,400 Z"/><text x="365" y="425" font-size="20" text-anchor="middle">🌮</text></g><g class="food-icon"><path d="M550,350 Q570,330 590,350 Q610,370 590,390 Q570,410 550,390 Q530,370 550,350 Z"/><text x="565" y="375" font-size="20" text-anchor="middle">🍕</text></g><g class="food-icon"><path d="M750,450 Q770,430 790,450 Q810,470 790,490 Q770,510 750,490 Q730,470 750,450 Z"/><text x="765" y="475" font-size="20" text-anchor="middle">🥙</text></g><g class="food-icon"><path d="M950,380 Q970,360 990,380 Q1010,400 990,420 Q970,440 950,420 Q930,400 950,380 Z"/><text x="965" y="405" font-size="20" text-anchor="middle">🍔</text></g><g class="vendor-icon"><rect x="80" y="500" width="60" height="40" rx="5" fill="rgba(255,255,255,0.1)"/><text x="110" y="525" font-size="16" text-anchor="middle">🏪</text></g><g class="vendor-icon"><rect x="280" y="550" width="60" height="40" rx="5" fill="rgba(255,255,255,0.1)"/><text x="310" y="575" font-size="16" text-anchor="middle">🚚</text></g><g class="vendor-icon"><rect x="480" y="520" width="60" height="40" rx="5" fill="rgba(255,255,255,0.1)"/><text x="510" y="545" font-size="16" text-anchor="middle">📦</text></g><g class="vendor-icon"><rect x="680" y="580" width="60" height="40" rx="5" fill="rgba(255,255,255,0.1)"/><text x="710" y="605" font-size="16" text-anchor="middle">🛒</text></g><g class="vendor-icon"><rect x="880" y="540" width="60" height="40" rx="5" fill="rgba(255,255,255,0.1)"/><text x="910" y="565" font-size="16" text-anchor="middle">🤝</text></g></svg>');
+        background-size: cover, 1200px 800px;
+    }
+    100% { 
+        background: 
+            linear-gradient(135deg, rgba(52, 211, 153, 0.85) 0%, rgba(4, 120, 87, 0.85) 100%),
+            url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><style>.food-icon{fill:rgba(255,255,255,0.12);}.vendor-icon{fill:rgba(255,255,255,0.1);}.pattern{fill:rgba(255,255,255,0.06);}</style></defs><rect width="100%" height="100%" fill="rgba(52,211,153,0.1)"/><g class="pattern"><circle cx="120" cy="120" r="42"/><circle cx="320" cy="220" r="37"/><circle cx="520" cy="170" r="47"/><circle cx="720" cy="270" r="40"/><circle cx="920" cy="200" r="44"/><circle cx="1120" cy="240" r="38"/></g><g class="food-icon"><path d="M170,320 Q190,300 210,320 Q230,340 210,360 Q190,380 170,360 Q150,340 170,320 Z"/><text x="185" y="345" font-size="22" text-anchor="middle">🍲</text></g><g class="food-icon"><path d="M370,420 Q390,400 410,420 Q430,440 410,460 Q390,480 370,460 Q350,440 370,420 Z"/><text x="385" y="445" font-size="22" text-anchor="middle">🌯</text></g><g class="food-icon"><path d="M570,370 Q590,350 610,370 Q630,390 610,410 Q590,430 570,410 Q550,390 570,370 Z"/><text x="585" y="395" font-size="22" text-anchor="middle">🥘</text></g><g class="food-icon"><path d="M770,470 Q790,450 810,470 Q830,490 810,510 Q790,530 770,510 Q750,490 770,470 Z"/><text x="785" y="495" font-size="22" text-anchor="middle">🍛</text></g><g class="food-icon"><path d="M970,400 Q990,380 1010,400 Q1030,420 1010,440 Q990,460 970,440 Q950,420 970,400 Z"/><text x="985" y="425" font-size="22" text-anchor="middle">🥗</text></g></svg>');
+        background-size: cover, 1200px 800px;
+    }
+}
+
+/* Floating food elements animation */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text x="20" y="20" font-size="12" opacity="0.3">🍜</text><text x="80" y="80" font-size="10" opacity="0.4">🌮</text><text x="40" y="60" font-size="8" opacity="0.5">🍕</text><text x="90" y="30" font-size="9" opacity="0.3">🥙</text><text x="10" y="70" font-size="7" opacity="0.6">🍔</text><text x="60" y="10" font-size="11" opacity="0.4">🏪</text><text x="30" y="90" font-size="9" opacity="0.3">🚚</text><text x="70" y="50" font-size="8" opacity="0.5">📦</text></svg>');
+    animation: float 25s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 1; }
+    25% { transform: translateY(-15px) rotate(5deg); opacity: 0.8; }
+    50% { transform: translateY(-30px) rotate(10deg); opacity: 0.6; }
+    75% { transform: translateY(-15px) rotate(5deg); opacity: 0.8; }
+}
+
+.container {
+    margin: 20px auto;
+    width: 380px;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(15px);
+    padding: 40px;
+    box-shadow: 
+        0 20px 40px rgba(16, 185, 129, 0.2), 
+        0 0 0 1px rgba(255,255,255,0.3),
+        inset 0 1px 0 rgba(255,255,255,0.8);
+    border-radius: 20px;
+    transform: translateY(0);
+    transition: all 0.3s ease;
+    animation: slideIn 0.6s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Street food themed shimmer effect */
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.1), transparent);
+    animation: shimmer 4s infinite;
+}
+
+.container::after {
+    content: '🍜 StreetFood Connect 🤝';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #10B981, #059669);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 0 0 10px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0.9;
+    z-index: 2;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 25px 50px rgba(16, 185, 129, 0.25), 
+        0 0 0 1px rgba(255,255,255,0.4),
+        inset 0 1px 0 rgba(255,255,255,0.9);
+}
+
+h2 {
+    margin-bottom: 30px;
+    margin-top: 15px;
+    color: #2d3748;
+    font-size: 2.2em;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    animation: titleGlow 2s ease-in-out infinite alternate;
+    position: relative;
+    z-index: 1;
+}
+
+h2::before {
+    content: '🏪';
+    margin-right: 10px;
+    animation: bounce 2s infinite;
+}
+
+h2::after {
+    content: '📦';
+    margin-left: 10px;
+    animation: bounce 2s infinite 0.5s;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-8px); }
+    60% { transform: translateY(-4px); }
+}
+
+@keyframes titleGlow {
+    from { text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    to { text-shadow: 0 2px 20px rgba(16, 185, 129, 0.2); }
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    width: 90%;
+    padding: 15px;
+    margin: 12px 0;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.95);
+    position: relative;
+    color: #2d3748;
+    z-index: 1;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+    border-color: #10B981;
+    outline: none;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
+    background: rgba(255, 255, 255, 1);
+}
+
+input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hover {
+    border-color: #34D399;
+    transform: translateY(-1px);
+}
+
+button {
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+    color: white;
+    border: none;
+    margin: 15px 5px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 1;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+button:hover::before {
+    left: 100%;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+}
+
+button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+}
+
+.form-toggle {
+    margin-bottom: 20px;
+}
+
+.msg, .message {
+    color: #e53e3e;
+    font-weight: 600;
+    margin: 15px 0;
+    padding: 12px;
+    background: rgba(254, 226, 226, 0.9);
+    border-radius: 8px;
+    border-left: 4px solid #e53e3e;
+    animation: shake 0.5s ease-in-out;
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+select {
+    width: 97%;
+    padding: 15px;
+    margin: 12px 0;
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 16px;
+    color: #2d3748;
+    outline: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+select:focus {
+    border-color: #10B981;
+    background: rgba(255, 255, 255, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
+}
+
+select:hover {
+    border-color: #34D399;
+    transform: translateY(-1px);
+}
+
+option {
+    color: #2d3748;
+    padding: 10px;
+    background: white;
+}
+
+option[value="vendor"]::before {
+    content: '🏪 ';
+}
+
+option[value="supplier"]::before {
+    content: '📦 ';
+}
+
+option:hover {
+    background: #f7fafc;
+}
+
+.form-box {
+    animation: formSlide 0.5s ease-out;
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes formSlide {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.error {
+    color: #e53e3e;
+    font-size: 0.9em;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    padding: 8px;
+    background: rgba(254, 226, 226, 0.9);
+    border-radius: 6px;
+    animation: errorPulse 0.5s ease-in-out;
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes errorPulse {
+    0% { opacity: 0; transform: scale(0.9); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* Link styling */
+a {
+    color: #10B981;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+a:hover {
+    color: #059669;
+    text-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
+}
+
+/* Paragraph styling */
+p {
+    color: #4a5568;
+    margin: 15px 0;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+}
+
+/* Loading animation for buttons */
+button.loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+button.loading::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    margin: auto;
+    border: 2px solid transparent;
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .container {
+        width: 90%;
+        margin: 10px auto;
+        padding: 30px 20px;
+    }
+    
+    .container::after {
+        font-size: 10px;
+        padding: 3px 10px;
+    }
+    
+    h2 {
+        font-size: 1.8em;
+    }
+    
+    input[type="text"], input[type="email"], input[type="password"], select {
+        width: 85%;
+    }
+    
+    body {
+        background-size: cover, 800px 600px;
+    }
+}
+
+/* Success message styling */
+.message.success {
+    color: #38a169;
+    background: rgba(198, 246, 213, 0.9);
+    border-left: 4px solid #38a169;
+    animation: successSlide 0.5s ease-out;
+}
+
+@keyframes successSlide {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Toggle button styling */
+button.toggle-btn {
+    background: transparent;
+    color: #10B981;
+    border: 2px solid #10B981;
+    font-weight: 500;
+}
+
+button.toggle-btn:hover {
+    background: #10B981;
+    color: white;
+    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+}
+
+/* Input placeholder styling - DARKER PLACEHOLDERS */
+input::placeholder {
+    color: #4a5568;
+    opacity: 1;
+    font-weight: 500;
+}
+
+/* Firefox specific placeholder styling */
+input::-moz-placeholder {
+    color: #4a5568;
+    opacity: 1;
+    font-weight: 500;
+}
+
+/* WebKit specific placeholder styling */
+input::-webkit-input-placeholder {
+    color: #4a5568;
+    opacity: 1;
+    font-weight: 500;
+}
+
+/* Microsoft Edge specific placeholder styling */
+input::-ms-input-placeholder {
+    color: #4a5568;
+    opacity: 1;
+    font-weight: 500;
+}
+
+select option:checked {
+    background: #f0fff4;
+    color: #2d3748;
+}
+
+/* Focus ring for accessibility */
+input:focus, select:focus, button:focus {
+    outline: 2px solid #6EE7B7;
+    outline-offset: 2px;
+}

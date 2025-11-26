@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PricePulse - Smart Crop Pricing</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+</head>
+<style>
+   .hero-bg {
+    background-image: url('f.jpg'); /* Ensure this image exists in your folder */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover; /* Changed to cover for better fit */
+    opacity: 0.8;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+/* Custom Tooltip Style */
+.myTooltip {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #166534;
+    color: #333;
+    padding: 5px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    font-size: 13px;
+}
+</style>
+
+<body class="min-h-screen bg-gradient-to-b from-green-50 via-white to-green-100 text-gray-800">
+  
+<header class="w-full absolute top-0 left-0 flex items-center justify-between px-8 py-5 z-50">
+  
+  <div class="flex items-center space-x-2">
+    <img src="i1.png" class="h-16 opacity-100" alt="Logo" onerror="this.style.display='none'" />
+    <h1 class="text-4xl font-bold text-green-700 px-2 rounded">PricePulse</h1>
+  </div>
+
+  <a href="Login.html"
+     class="text-xl px-6 py-3 rounded-xl bg-white text-green-700 font-semibold shadow hover:shadow-md border border-green-600 hover:bg-green-50 transition">
+     Login
+  </a>
+
+</header>
+
+<section class="relative flex flex-col items-center justify-center text-center px-6 h-[95vh]">
+
+  <div class="hero-bg"></div>
+
+  <h1 data-aos="fade-down" class="text-7xl font-extrabold text-white drop-shadow-md relative z-10">
+    PricePulse
+  </h1>
+
+  <p data-aos="fade-up" data-aos-delay="150"
+     class="mt-4 text-4xl italic font-medium text-green-800 px-4 py-1 rounded-lg backdrop-blur-sm relative z-10">
+    “Know the market. Grow with confidence.”
+  </p>
+
+  <p data-aos="fade-up" data-aos-delay="300"
+     class="mt-6 text-2xl text-gray-800 font-medium max-w-2xl bg-white/70 p-4 rounded-xl backdrop-blur-sm relative z-10">
+    Real-time crop prices, trends, and market insights—empowering farmers and traders with accurate data.
+  </p>
+
+  <div data-aos="fade-up" data-aos-delay="500" class="mt-8 relative z-10">
+    <a href="dashboard.html"
+       class="rounded-2xl bg-gradient-to-r from-green-800 to-emerald-600 text-white px-10 py-4 text-3xl shadow-lg hover:scale-105 transition transform duration-200 block">
+      Explore Dashboard
+    </a>
+  </div>
+
+</section>
+
+<section id="map-section" class="px-6 py-20 bg-white">
+  <h2 data-aos="fade-up" class="text-3xl font-bold text-center text-gray-800 mb-10">
+    India Commodity Price Heatmap
+  </h2>
+
+  <p data-aos="fade-up" data-aos-delay="150"
+     class="text-center text-gray-600 max-w-2xl mx-auto mb-10">
+    States are color-coded based on the price of the selected commodity.  
+    Darker shade = Higher price.
+  </p>
+
+  <div class="flex justify-center mb-8" data-aos="fade-up" data-aos-delay="250">
+    <select id="commoditySelect"
+      class="px-8 py-3 rounded-xl border-2 border-green-500 text-lg font-semibold bg-white shadow-sm focus:outline-none focus:ring-4 focus:ring-green-200 transition">
+    </select>
+  </div>
+
+  <div id="map-wrapper" class="max-w-6xl mx-auto">
+    <div class="flex items-center justify-between mb-6">
+      <div>
+        <h1 class="text-2xl font-bold text-green-700">Live Heatmap</h1>
+        <p class="text-sm text-gray-500">Click a state to see exact pricing.</p>
+      </div>
+
+      <div class="flex items-center space-x-3">
+        <button id="exportSvgBtn" class="px-4 py-2 rounded bg-green-600 hover:bg-green-700 text-white transition shadow">
+            Export Map (SVG)
+        </button>
+      </div>
+    </div>
+
+    <div class="bg-gray-50 border border-gray-200 p-4 rounded-2xl shadow-inner relative">
+      
+      <div id="map" class="h-[500px] md:h-[600px] w-full rounded-xl z-0"></div>
+
+      <div class="mt-4 flex flex-col md:flex-row items-start justify-between gap-4">
+        <div id="legend" class="legend bg-white p-3 rounded border border-gray-200 shadow-sm"></div>
+        <div id="stateDetails" class="text-sm text-gray-700 bg-white p-3 rounded border border-gray-200 shadow-sm min-w-[200px]">
+            Select a commodity & click a state.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 mb-8">
+    <h3 class="text-lg font-bold text-gray-800 flex items-center">
+        <span class="w-5.5 h-6 bg-red-600 mr-3 rounded-full"></span>
+        Market Intelligence – Sentiment Radar
+    </h3>
+
+    <p id="sentiment-status" class="text-xl font-semibold mt-4"></p>
+    <p id="sentiment-headline" class="mt-2 text-gray-700"></p>
+    <p id="sentiment-impact" class="mt-2 font-bold text-blue-600"></p>
+</div>
+<section class="px-6 py-20 max-w-6xl mx-auto">
+    
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">
+      Why Choose PricePulse?
+    </h2>
+
+    <div class="grid md:grid-cols-4 gap-8">
+
+      <div data-aos="fade-up" class="rounded-2xl shadow-md hover:shadow-xl transition bg-white p-6 flex flex-col items-center text-center group border border-transparent hover:border-green-200">
+        <div class="bg-green-100 p-4 rounded-full mb-4 group-hover:bg-green-200 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3v18h18M7 14l3-3 4 4 5-6" />
+            </svg>
+        </div>
+        <h3 class="text-xl font-semibold">Real-Time Prices</h3>
+        <p class="mt-2 text-gray-600 text-sm">Live mandi price updates from verified sources.</p>
+      </div>
+
+      <div data-aos="fade-up" data-aos-delay="100" class="rounded-2xl shadow-md hover:shadow-xl transition bg-white p-6 flex flex-col items-center text-center group border border-transparent hover:border-green-200">
+        <div class="bg-green-100 p-4 rounded-full mb-4 group-hover:bg-green-200 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-3.866 0-7 1.79-7 4s3.134 4 7 4 7-1.79 7-4-3.134-4-7-4z" />
+            </svg>
+        </div>
+        <h3 class="text-xl font-semibold">Interactive Map</h3>
+        <p class="mt-2 text-gray-600 text-sm">Visual crop price trends across India.</p>
+      </div>
+
+      <div data-aos="fade-up" data-aos-delay="200" class="rounded-2xl shadow-md hover:shadow-xl transition bg-white p-6 flex flex-col items-center text-center group border border-transparent hover:border-green-200">
+        <div class="bg-green-100 p-4 rounded-full mb-4 group-hover:bg-green-200 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6h13M3 7h13v10" />
+            </svg>
+        </div>
+        <h3 class="text-xl font-semibold">Clear Insights</h3>
+        <p class="mt-2 text-gray-600 text-sm">Charts, predictions, and historical comparisons.</p>
+      </div>
+
+      <div data-aos="fade-up" data-aos-delay="300" class="rounded-2xl shadow-md hover:shadow-xl transition bg-white p-6 flex flex-col items-center text-center group border border-transparent hover:border-green-200">
+        <div class="bg-green-100 p-4 rounded-full mb-4 group-hover:bg-green-200 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+        </div>
+        <h3 class="text-xl font-semibold">Fast & Accurate</h3>
+        <p class="mt-2 text-gray-600 text-sm">Instant processing with high-accuracy data engines.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="px-6 py-20 text-center bg-gradient-to-r from-green-700 to-emerald-600 text-white">
+    <h2 class="text-4xl font-bold mb-4">Start Tracking Smarter</h2>
+    <p class="mb-8 text-lg opacity-90">Join thousands of farmers and traders using PricePulse daily.</p>
+
+    <a href="dashboard.html"
+      class="bg-white text-green-800 font-bold px-8 py-4 rounded-full shadow-lg hover:bg-gray-100 hover:scale-105 transition transform duration-200">
+      Get Started Now
+    </a>
+  </section>
+
+  <footer class="py-8 text-center text-gray-500 bg-gray-50 border-t border-gray-200">
+    <p>© <span id="year"></span> PricePulse. All rights reserved.</p>
+  </footer>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+/* ---------- Configuration ---------- */
+const COMMODITIES = [
+  'Onion','Potato','Tomato','Wheat','Rice','Gram','Tur Dal','Urad Dal','Moong','Masur',
+  'Sugar','Chili','Garlic','Brinjal','Coriander','Cabbage','Cauliflower','Peas','Beans','Ginger','Pumpkin','Cucumber'
+];
+
+// FIX: Using a reliable, working GeoJSON URL for India
+const GEOJSON_URL = "https://raw.githubusercontent.com/geohacker/india/master/state/india_telengana.geojson";
+
+
+// store demo state prices per state name
+const demoStatePrices = {};
+
+// color helpers
+function hexToRgb(hex) {
+  hex = hex.replace('#','');
+  if (hex.length === 3) hex = hex.split('').map(c => c + c).join('');
+  return { r: parseInt(hex.substr(0,2),16), g: parseInt(hex.substr(2,2),16), b: parseInt(hex.substr(4,2),16) };
+}
+function lerp(a,b,t){ return Math.round(a + (b-a)*t); }
+function colorBlendHex(a,b,t){
+  const A = hexToRgb(a), B = hexToRgb(b);
+  return `rgb(${lerp(A.r,B.r,t)},${lerp(A.g,B.g,t)},${lerp(A.b,B.b,t)})`;
+}
+function getColorForValue(v,min,max){
+  if (v==null) return '#e5e7eb'; // light grey for no data
+  const p = (v - min) / (max - min || 1);
+  if (p <= 0.5) {
+    const t = p / 0.5;
+    return colorBlendHex('#86efac','#fde047', t); // Green to Yellow
+  } else {
+    const t = (p - 0.5) / 0.5;
+    return colorBlendHex('#fde047','#ef4444', t); // Yellow to Red
+  }
+}
+function computeStats(commodity){
+  let min = Infinity, max = -Infinity, sum = 0, count = 0;
+  for (const s in demoStatePrices) {
+    const v = demoStatePrices[s][commodity];
+    if (v!=null){ min = Math.min(min,v); max = Math.max(max,v); sum += v; count++; }
+  }
+  if (!isFinite(min)) min = 0;
+  if (!isFinite(max)) max = 0;
+  return {min,max,avg: Math.round(count?sum/count:0)};
+}
+
+/* ---------- Build demo prices from GeoJSON features ---------- */
+function loadStatePricesFromAPI(geojson) {
+  fetch('http://127.0.0.1:5000/api/commodities')
+    .then(r => {
+      if (!r.ok) throw new Error("HTTP error " + r.status);
+      return r.json();
+    })
+    .then(data => {
+      const records = data.data; // your API has { data: [ ... ] }
+
+      // clear existing
+      Object.keys(demoStatePrices).forEach(k => delete demoStatePrices[k]);
+
+      // aggregate modal_price per state & commodity
+      records.forEach(item => {
+        const state = item.state;
+        const commodity = item.commodity;
+        const price = item.modal_price;
+
+        if (!demoStatePrices[state]) demoStatePrices[state] = {};
+        // For multiple records of same commodity in a state, take avg
+        if (!demoStatePrices[state][commodity]) {
+          demoStatePrices[state][commodity] = { sum: 0, count: 0 };
+        }
+        demoStatePrices[state][commodity].sum += price;
+        demoStatePrices[state][commodity].count += 1;
+      });
+
+      // finalize average prices
+      for (const state in demoStatePrices) {
+        for (const c in demoStatePrices[state]) {
+          const obj = demoStatePrices[state][c];
+          demoStatePrices[state][c] = Math.round(obj.sum / obj.count);
+        }
+      }
+
+      // ensure all states in geojson exist in demoStatePrices (fallback empty)
+      geojson.features.forEach(f => {
+        const name = f.properties.NAME_1 || f.properties.st_nm || f.properties.name;
+        if (!demoStatePrices[name]) demoStatePrices[name] = {};
+      });
+
+      // add map layer
+      geoLayer = L.geoJSON(geojson, {
+        style: styleFeature,
+        onEachFeature: onEachFeature
+      }).addTo(map);
+
+      try { map.fitBounds(geoLayer.getBounds(), { padding: [20,20] }); } 
+      catch(e){ console.error("Fitbounds error", e); }
+
+      updateLegend();
+    })
+    .catch(err => {
+      console.error('Failed to fetch prices from API', err);
+      alert('Failed to load commodity prices from API');
+    });
+}
+
+/* ---------- Leaflet map ---------- */
+let map, geoLayer;
+let currentCommodity = COMMODITIES[0];
+
+function init(){
+  // AOS init
+  AOS.init();
+  document.getElementById("year").innerText = new Date().getFullYear();
+
+  // add commodities to select
+  const sel = document.getElementById('commoditySelect');
+  COMMODITIES.forEach(c=>{
+    const o = document.createElement('option'); o.value=c; o.text=c; sel.appendChild(o);
+  });
+  sel.value = currentCommodity;
+  sel.addEventListener('change', e => {
+    currentCommodity = e.target.value;
+    if (geoLayer) geoLayer.setStyle(styleFeature);
+    updateLegend();
+    document.getElementById('stateDetails').innerHTML = 'Select a state...';
+  });
+
+  // init leaflet map
+  // Set view to India center
+  map = L.map('map', { 
+    center: [22.9734, 78.6569], 
+    zoom: 4.5,
+    zoomControl: true,
+    scrollWheelZoom: false // disable scroll zoom so page scrolls naturally
+  });
+  
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+	subdomains: 'abcd',
+	maxZoom: 20
+  }).addTo(map);
+
+  // load geojson
+  console.log("Fetching GeoJSON from:", GEOJSON_URL);
+  
+  fetch(GEOJSON_URL)
+   fetch(GEOJSON_URL)
+  .then(r => r.json())
+  .then(geojson => {
+      loadStatePricesFromAPI(geojson); // <- dynamic data
+  })
+  .catch(err => { console.error(err); });
+
+  // export button
+  document.getElementById('exportSvgBtn').addEventListener('click', exportMapAsSVG);
+}
+
+/* style each state */
+function styleFeature(feature){
+  const name = feature.properties.NAME_1 || feature.properties.st_nm || feature.properties.name;
+  const val = demoStatePrices[name] ? demoStatePrices[name][currentCommodity] : null;
+  const {min,max} = computeStats(currentCommodity);
+  return {
+    weight: 1,
+    color: '#ffffff',
+    fillColor: getColorForValue(val,min,max),
+    fillOpacity: 0.8
+  };
+}
+
+/* mouse handlers */
+let tooltip;
+function onEachFeature(feature, layer){
+  const name = feature.properties.NAME_1 || feature.properties.st_nm || feature.properties.name;
+  layer.on({
+    mouseover: (e) => {
+      e.target.setStyle({ weight: 2, color: '#166534', fillOpacity: 1 });
+      showTooltip(e.target, feature);
+      if(L.Browser.ie || L.Browser.opera || L.Browser.edge) {
+          e.target.bringToFront();
+      }
+    },
+    mouseout: (e) => {
+      geoLayer.resetStyle(e.target);
+      hideTooltip();
+    },
+    click: (e) => {
+      const nm = feature.properties.NAME_1 || feature.properties.st_nm || feature.properties.name;
+      showStateDetails(nm);
+      try { map.fitBounds(e.target.getBounds(), { maxZoom:7, padding:[50,50]}); } catch(e) {}
+    }
+  });
+}
+
+/* tooltip */
+function showTooltip(layer, feature){
+  const name = feature.properties.NAME_1 || feature.properties.st_nm || feature.properties.name;
+  const price = demoStatePrices[name] ? demoStatePrices[name][currentCommodity] : null;
+  const html = `<div class="font-bold text-base">${name}</div>
+                <div class="mt-1 text-green-700 font-semibold">${currentCommodity}: <span class="text-black">${price?('₹'+price+'/kg'):'N/A'}</span></div>`;
+  
+  if (!tooltip) {
+    tooltip = L.tooltip({className:'myTooltip', direction:'top', sticky:true, opacity: 1}).setContent(html).setLatLng(layer.getBounds().getCenter()).addTo(map);
+  } else {
+    tooltip.setContent(html).setLatLng(layer.getBounds().getCenter()).addTo(map);
+  }
+}
+function hideTooltip(){ if (tooltip) { map.removeLayer(tooltip); tooltip = null; } }
+
+/* show state detail in panel */
+function showStateDetails(stateName){
+  const data = demoStatePrices[stateName];
+  const panel = document.getElementById('stateDetails');
+  if (!data) { 
+      panel.innerHTML = `<div class="font-bold text-gray-800">${stateName}</div><div class="text-sm text-gray-500">No data available</div>`; 
+      return; 
+  }
+  const p = data[currentCommodity];
+  panel.innerHTML = `
+    <div class="font-bold text-lg text-green-800 border-b pb-1 mb-2">${stateName}</div>
+    <div class="flex justify-between items-center">
+        <span class="text-gray-600">Commodity:</span>
+        <span class="font-medium">${currentCommodity}</span>
+    </div>
+    <div class="flex justify-between items-center mt-1">
+        <span class="text-gray-600">Current Price:</span>
+        <span class="text-xl font-bold text-green-600">₹${p}/kg</span>
+    </div>
+  `;
+}
+
+/* legend */
+function updateLegend(){
+  const {min,max,avg} = computeStats(currentCommodity);
+  const legend = document.getElementById('legend');
+  legend.innerHTML = '';
+  
+  const title = document.createElement('div');
+  title.className = "text-xs font-bold text-gray-500 mb-2 uppercase tracking-wide";
+  title.innerText = "Price Range (₹/kg)";
+  legend.appendChild(title);
+
+  const buckets = 5;
+  for (let i=0;i<buckets;i++){
+    const v0 = min + (i)*(max - min) / buckets;
+    const v1 = min + (i+1)*(max - min) / buckets;
+    const mid = Math.round((v0+v1)/2);
+    const color = getColorForValue(mid,min,max);
+    const row = document.createElement('div');
+    row.className = 'flex items-center gap-3 mb-1 text-xs';
+    row.innerHTML = `<div style="width:20px;height:20px;background:${color};border-radius:4px;"></div>
+                     <div class="text-gray-700 font-medium">${Math.round(v0)} - ${Math.round(v1)}</div>`;
+    legend.appendChild(row);
+  }
+  const avgRow = document.createElement('div');
+  avgRow.className = 'text-xs text-gray-500 mt-3 pt-2 border-t';
+  avgRow.innerHTML = `National Avg: <span class="font-bold text-green-700">₹${avg}</span>`;
+  legend.appendChild(avgRow);
+}
+
+/* SVG Export (unchanged logic) */
+function exportMapAsSVG(){
+  if (!geoLayer) { alert('Map not ready yet'); return; }
+  const geo = geoLayer.toGeoJSON();
+  const mapSize = map.getSize();
+  const svgNS = "http://www.w3.org/2000/svg";
+  const svgEl = document.createElementNS(svgNS, "svg");
+  svgEl.setAttribute("xmlns", svgNS);
+  svgEl.setAttribute("width", mapSize.x);
+  svgEl.setAttribute("height", mapSize.y);
+  svgEl.setAttribute("viewBox", `0 0 ${mapSize.x} ${mapSize.y}`);
+
+  const rect = document.createElementNS(svgNS, "rect");
+  rect.setAttribute("x", 0);
+  rect.setAttribute("y", 0);
+  rect.setAttribute("width", mapSize.x);
+  rect.setAttribute("height", mapSize.y);
+  rect.setAttribute("fill", "#ffffff");
+  svgEl.appendChild(rect);
+
+  geo.features.forEach(feature => {
+    if (!feature.geometry) return;
+    const geom = feature.geometry;
+    const type = geom.type;
+    function coordToPoint(latlng){
+      const ll = L.latLng(latlng[1], latlng[0]);
+      const point = map.latLngToContainerPoint(ll);
+      return [point.x, point.y];
+    }
+    function polygonPoints(coords){
+      if (!coords) return '';
+      if (typeof coords[0][0][0] === 'number') {
+        return coords.map(ring => {
+          return 'M' + ring.map(c => coordToPoint(c).join(' ')).join(' L ') + ' Z';
+        }).join(' ');
+      } else {
+        return coords.map(poly => {
+          return poly.map(ring => 'M' + ring.map(c => coordToPoint(c).join(' ')).join(' L ') + ' Z').join(' ');
+        }).join(' ');
+      }
+    }
+    let d = '';
+    if (type === 'Polygon') d = polygonPoints(geom.coordinates);
+    else if (type === 'MultiPolygon') d = polygonPoints(geom.coordinates);
+    else return;
+
+    const pathEl = document.createElementNS(svgNS, 'path');
+    pathEl.setAttribute('d', d);
+    const name = feature.properties.NAME_1 || feature.properties.st_nm || feature.properties.name;
+    const price = demoStatePrices[name] ? demoStatePrices[name][currentCommodity] : null;
+    const {min,max} = computeStats(currentCommodity);
+    const fill = price ? getColorForValue(price,min,max) : '#f3f3f3';
+    pathEl.setAttribute('fill', fill);
+    pathEl.setAttribute('stroke', '#ffffff');
+    pathEl.setAttribute('stroke-width', '1');
+    svgEl.appendChild(pathEl);
+  });
+
+  const serializer = new XMLSerializer();
+  const svgStr = serializer.serializeToString(svgEl);
+  const blob = new Blob([svgStr], {type: 'image/svg+xml;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `pricepulse_india_${currentCommodity}.svg`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+/* Init */
+window.addEventListener('DOMContentLoaded', init);
+
+async function loadMarketSentiment() {
+    try {
+        let res = await fetch("http://localhost:5000/api/market_sentiment");
+        let data = await res.json();
+
+        if (data.success) {
+            document.getElementById("sentiment-status").innerText =
+                `Sentiment: ${data.sentiment.toUpperCase()} (Score: ${data.score})`;
+
+            document.getElementById("sentiment-headline").innerText =
+                `Source: ${data.headline}`;
+
+            document.getElementById("sentiment-impact").innerText =
+                `Impact on Price Forecast: ${data.impact}`;
+        }
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+loadMarketSentiment();
+
+</script>
+
+</body>
+</html>
