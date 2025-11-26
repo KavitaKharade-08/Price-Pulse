@@ -57,24 +57,7 @@ PricePulse aggregates real-time and historical data, applies ML forecasting, mon
 
 ## 🏗️ Architecture
 
-graph LR
-    %% Data Sources
-    A[Field Officer] --> B(Data Aggregation)
-    C[Historical Data] --> B
-
-    %% AI Core
-    B --> D{AI Engine (Prophet)}
-    
-    %% Decision Logic
-    D -->|Forecast| E{Volatility Check}
-    
-    %% Outcomes
-    E -- High Risk (>15%) --> F[🔴 Alert Dashboard]
-    E -- Stable --> G[🟢 Standard View]
-    
-    %% Action
-    F --> H[Buffer Stock Logic]
-
+![WhatsApp Image 2025-11-25 at 19 52 48](https://github.com/user-attachments/assets/d9b4b1d8-d315-47b8-b5aa-8128199c8de2)
 ---
 
 ## ⚙️ Tech Stack
