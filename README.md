@@ -83,9 +83,9 @@ graph LR
 | ---------- | ----------------------------------------- |
 | Frontend   | HTML5, Tailwind CSS, React.js, Leaflet.js |
 | Backend    | Python (Flask)                            |
-| ML Engine  | Facebook Prophet, ARIMA, Pandas, Joblib   |
+| ML Engine  | Facebook Prophet, Pandas, Joblib   |
 | Database   | Firebase Realtime DB / JSON Store         |
-| Deployment | Render (Backend), Netlify (Frontend)      |
+
 
 ---
 
