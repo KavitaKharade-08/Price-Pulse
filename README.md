@@ -1,1 +1,189 @@
+# PricePulse — Stabilizing India's Food Basket 🚜 🇮🇳
+
+**Theme:** Agriculture & Food Technology
+
+---
+
+## 🚀 Overview
+
+PricePulse is an AI-driven **Decision Support System (DSS)** built for the Department of Consumer Affairs to move from a reactive to a proactive approach in managing price volatility for essential commodities. The system forecasts price volatility **15 days in advance** for 22 essential commodities (pulses, onions, etc.), and recommends strategic interventions.
+
+**Live Demo:** [Insert Your Netlify/Render Link Here]
+
+**Video Walkthrough:** [Insert YouTube Link Here (Optional)]
+
+---
+
+## 🚨 Problem
+
+Price volatility creates uncertainty for both policymakers and farmers. Current monitoring relies on delayed reporting from 550 centers — by the time a spike is detected, the market often already reacts with panic selling, inflation, and inefficient use of buffer stocks.
+
+**Consequences**
+
+* Panic selling by farmers
+* Consumer inflation
+* Wasteful or untimely use of Government Buffer Stocks
+
+---
+
+## 💡 Solution
+
+PricePulse aggregates real-time and historical data, applies ML forecasting, monitors volatility, and suggests context-aware actions (release, hold, divert) using a smart buffer-stock manager.
+
+---
+
+## 🌟 Key Features
+
+* **Real-Time Monitoring Dashboard**
+
+  * Live heatmap of India with price hotspots across 550 reporting centers.
+  * Color-coded alerts (🔴 High Volatility, 🟡 Watch, 🟢 Stable).
+
+* **AI Forecasting (The Prophet Engine)**
+
+  * Uses Facebook Prophet and ARIMA to produce 15-day forecasts.
+  * Handles trend, seasonality (festivals), and historical patterns.
+
+* **Smart Buffer Stock Manager**
+
+  * Dual-trigger logic based on **Price** and **Inventory Age**.
+  * Recommends releases (High Price + Fresh Stock) and diversions (Stable Price + Expiring Stock).
+
+* **Market Intelligence Radar (NLP)**
+
+  * Scrapes headlines (e.g., "Truck Strike", "Rains in Nashik") and performs sentiment/scenario analysis to adjust forecasts.
+
+* **Lok Bhasha (Multilingual Support)**
+
+  * One-click translation to 10+ Indian languages (Hindi, Marathi, Tamil, etc.).
+
+---
+
+## 🏗️ Architecture
+
+```mermaid
+graph LR
+    A[Field Officer] -->|Geo-Fenced Input| B(Data Aggregation)
+    C[Historical Data] --> B
+    B --> D{AI Engine (Prophet)}
+    D -->|Forecast| E[Volatility Check]
+    E -- High Risk --> F[🔴 Alert Dashboard]
+    E -- Stable --> G[🟢 Standard View]
+    F --> H[Buffer Stock Logic]
+```
+
+---
+
+## ⚙️ Tech Stack
+
+| Component  | Technology Used                           |
+| ---------- | ----------------------------------------- |
+| Frontend   | HTML5, Tailwind CSS, React.js, Leaflet.js |
+| Backend    | Python (Flask)                            |
+| ML Engine  | Facebook Prophet, ARIMA, Pandas, Joblib   |
+| Database   | Firebase Realtime DB / JSON Store         |
+| Deployment | Render (Backend), Netlify (Frontend)      |
+
+---
+
+## 📂 Project Structure
+
+```
+PricePulse/
+├── app.py                 # Main Flask Application
+├── requirements.txt       # Python Dependencies
+├── price_model.pkl        # Pre-trained Prophet Model
+├── static/                # CSS, Images, JS
+│   ├── style.css
+│   ├── i1.png             # Logo
+│   ├── dashboard_preview.png
+│   └── app_preview.png
+├── templates/             # HTML Pages
+│   ├── index.html         # Main Dashboard
+│   ├── login.html         # Auth Portal
+│   └── data-entry.html    # Field Officer App
+└── data/
+    └── commodity_prices.csv  # Historical Dataset
+```
+
+---
+
+## 🛠️ Installation & Setup
+
+**Prerequisites**
+
+* Python 3.9+
+* pip
+
+**1. Clone the repository**
+
+```bash
+git clone https://github.com/YourUsername/PricePulse-SIH.git
+cd PricePulse-SIH
+```
+
+**2. Install dependencies**
+
+```bash
+pip install -r requirements.txt
+```
+
+**3. Run the application**
+
+```bash
+python app.py
+```
+
+Open the dashboard at: `http://127.0.0.1:5000/`
+
+---
+
+## 🔍 Usage & Developer Notes
+
+* **Model file**: `price_model.pkl` — replace or re-train if you update Prophet/ARIMA hyperparameters.
+* **Data ingestion**: Field officer inputs go to Firebase Realtime DB; backend pulls and aggregates into the forecasting pipeline.
+* **Heatmap**: Leaflet.js reads recent prices from the backend endpoint (e.g., `/api/latest-prices`).
+* **NLP scrapers**: Run cron jobs to fetch headlines and push sentiment adjustments to the ML engine.
+
+---
+
+## 📸 Screenshots
+
+1. Policymaker Dashboard (War Room) — Real-time heatmap and forecasts.
+2. Geo-Verified Field App — GPS-locked data entry form.
+
+(Place images under `static/` and reference them in `index.html`.)
+
+---
+
+## 👥 Team — Tetragram
+
+* **Swarup Chavan**
+* **Satyam Mali**
+* **Prashant Pawar**
+* **Kavita Kharade**
+
+Built with ❤️ for Smart India Hackathon 2024
+
+---
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome. Please fork the repository and create a PR.
+
+---
+
+## 📄 License
+
+This project is open source — add your preferred license (e.g., MIT) here.
+
+---
+
+## 📫 Contact
+
+For queries, reach out to: `kavitakharade22@gmail.com` or open an issue on GitHub.
+
+---
+
+*Replace placeholder links, names, and contact details with actual values before publishing.*
 
