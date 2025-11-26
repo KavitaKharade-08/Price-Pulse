@@ -84,30 +84,8 @@ graph LR
 | Frontend   | HTML5, Tailwind CSS, React.js, Leaflet.js |
 | Backend    | Python (Flask)                            |
 | ML Engine  | Facebook Prophet, Pandas, Joblib   |
-| Database   | Firebase Realtime DB / JSON Store         |
+| Database   | Firebase Realtime DB / JSON Store(DataSet)|
 
-
----
-
-## 📂 Project Structure
-
-```
-PricePulse/
-├── app.py                 # Main Flask Application
-├── requirements.txt       # Python Dependencies
-├── price_model.pkl        # Pre-trained Prophet Model
-├── static/                # CSS, Images, JS
-│   ├── style.css
-│   ├── i1.png             # Logo
-│   ├── dashboard_preview.png
-│   └── app_preview.png
-├── templates/             # HTML Pages
-│   ├── index.html         # Main Dashboard
-│   ├── login.html         # Auth Portal
-│   └── data-entry.html    # Field Officer App
-└── data/
-    └── commodity_prices.csv  # Historical Dataset
-```
 
 ---
 
@@ -158,10 +136,7 @@ Open the dashboard at: `http://127.0.0.1:5000/`
 3. Analysis & Prediction Dashboard - ![WhatsApp Image 2025-11-25 at 18 24 15 (2)](https://github.com/user-attachments/assets/dae9af96-9be0-45ee-92a9-1e55e0c7856d)
 4. ![WhatsApp Image 2025-11-25 at 18 24 15](https://github.com/user-attachments/assets/bdcf2575-bfe7-484d-88d5-8680257ff884)
 5. <img width="1871" height="683" alt="Screenshot 2025-11-26 091314" src="https://github.com/user-attachments/assets/34548c88-206d-4c84-8a0f-4f8d882377e2" />
-
-
-
-
+6. Sentiment Analysis & Ai Market Intelligence- ![WhatsApp Image 2025-11-25 at 19 51 17](https://github.com/user-attachments/assets/4580dc30-a56a-4586-ad1d-24c5444b6254)
 
 
 ---
