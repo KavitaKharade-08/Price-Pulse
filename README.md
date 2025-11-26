@@ -155,8 +155,10 @@ Open the dashboard at: `http://127.0.0.1:5000/`
 1. Landing Page- <img width="1886" height="877" alt="Screenshot 2025-11-25 183254" src="https://github.com/user-attachments/assets/2cb8e9e5-152e-4cb8-80b6-24a7eaf121c5" />
 
 2. India HeatMap- ![WhatsApp Image 2025-11-25 at 19 15 38](https://github.com/user-attachments/assets/712729cb-8753-4e1a-b5d3-d157732feac6)
-3. Dashboard - ![WhatsApp Image 2025-11-25 at 18 24 15 (2)](https://github.com/user-attachments/assets/dae9af96-9be0-45ee-92a9-1e55e0c7856d)
+3. Analysis & Prediction Dashboard - ![WhatsApp Image 2025-11-25 at 18 24 15 (2)](https://github.com/user-attachments/assets/dae9af96-9be0-45ee-92a9-1e55e0c7856d)
 4. ![WhatsApp Image 2025-11-25 at 18 24 15](https://github.com/user-attachments/assets/bdcf2575-bfe7-484d-88d5-8680257ff884)
+5. <img width="1871" height="683" alt="Screenshot 2025-11-26 091314" src="https://github.com/user-attachments/assets/34548c88-206d-4c84-8a0f-4f8d882377e2" />
+
 
 
 
