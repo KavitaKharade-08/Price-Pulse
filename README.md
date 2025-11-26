@@ -63,13 +63,13 @@ PricePulse aggregates real-time and historical data, applies ML forecasting, mon
 
 ```mermaid
 graph LR
-    A[Field Officer] -->|Geo-Fenced Input| B(Data Aggregation)
-    C[Historical Data] --> B
-    B --> D{AI Engine (Prophet)}
-    D -->|Forecast| E[Volatility Check]
-    E -- High Risk --> F[🔴 Alert Dashboard]
-    E -- Stable --> G[🟢 Standard View]
-    F --> H[Buffer Stock Logic]
+A[Field Officer] -->|Geo-Fenced Input| B[Data Aggregation]
+C[Historical Data] --> B
+B --> D[AI Engine (Prophet)]
+D -->|Forecast| E[Volatility Check]
+E -->|High Risk| F[Alert Dashboard]
+E -->|Stable| G[Standard View]
+F --> H[Buffer Stock Logic]
 ```
 
 ---
